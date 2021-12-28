@@ -21,7 +21,8 @@ export class HomeComponent implements OnInit {
   badLogin: boolean = false;
   signUp = { id: '', name: '', password: '' }
   badSignup: boolean = false;
-  loginText:string = `Can't find username!`;
+  loginText: string = `Can't find username!`;
+  badTrivia: boolean = false;
 
   showInfo: boolean = false;
   triviaInfo: APIInfo;
@@ -68,14 +69,12 @@ export class HomeComponent implements OnInit {
         this.selectedUser = foundUser
         this.isGuest = false;
       }
-      else
-      {
+      else {
         this.loginText = `You entered the wrong password!`
         this.badLogin = true;
       }
     }
-    else
-    {
+    else {
       this.loginText = `Couldn't find username!`
       this.badLogin = true;
     }
@@ -92,12 +91,30 @@ export class HomeComponent implements OnInit {
   }
 
   startGame() {
-    let handleInfo = { isStats : false, guest: this.isGuest, id: this.isGuest ? 'Guest' : this.selectedUser.id, info: this.triviaInfo }
-    this.gameOutput.emit(handleInfo)
+    this.triviaService.getTrivia(this.triviaInfo)
+      .then((resp: any) => {
+        if (resp.response_code === 1)
+          this.badTrivia = true;
+        else {
+          this.badTrivia = false;
+          let handleInfo = { isStats: false, guest: this.isGuest, id: this.isGuest ? 'Guest' : this.selectedUser.id, info: this.triviaInfo }
+          this.gameOutput.emit(handleInfo)
+        }
+      })
   }
 
   viewStats() {
-    let handleInfo = { isStats : true, guest: this.isGuest, id: this.isGuest ? 'Guest' : this.selectedUser.id, info:this.triviaInfo}
+    let handleInfo = { isStats: true, guest: this.isGuest, id: this.isGuest ? 'Guest' : this.selectedUser.id, info: this.triviaInfo }
     this.gameOutput.emit(handleInfo)
+  }
+
+  checkTrivia() {
+    this.triviaService.getTrivia(this.triviaInfo)
+      .then((resp: any) => {
+        if (resp.response_code === 1)
+          this.badTrivia = true;
+        else
+          this.badTrivia = false;
+      })
   }
 }

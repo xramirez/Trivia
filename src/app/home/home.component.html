@@ -45,6 +45,7 @@
             </select>
         </div>
     </div>
+    <div [style.visibility]="badTrivia ? 'visible' : 'hidden'" class="bad-login">Sorry, we couldn't pull enough questions for a game. Try different game options!</div>
     <div>
         <button (click)="startGame()" class="btn btn-secondary" [innerHTML]="!isGuest ? 'Start Game' : 'Start as Guest'"></button>
     </div>
