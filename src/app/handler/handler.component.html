@@ -1,0 +1,14 @@
+<div class="main-body">
+    <h1>Pop Culture Trivia!</h1>
+    <p>Powered by:</p>
+    <div class="row banners">
+        <a href="https://opentdb.com/" class="trivia-banner col"></a>
+        <a href="https://m3o.com/" class="db-banner col"></a>
+    </div>
+    
+    <home *ngIf="setup" (gameOutput)="handleOutput($event)"></home>
+    <game *ngIf="game" [gameInfo]="apiInfo" (endInfo)="endGame($event)"></game>
+    <stats *ngIf="gameStats" [finalInfo]="finalInfo"></stats>
+    <button *ngIf="!setup" (click)="restartGame()" class="btn btn-danger back">Back to Home</button>
+
+</div>

@@ -1,0 +1,22 @@
+<h1 *ngIf="!justStats">You got a score of {{finalInfo.score}} out of 10!</h1>
+<h2 *ngIf="!finalInfo.guest">Here are your stats, {{finalInfo.id}}:</h2>
+<div *ngIf="!finalInfo.guest" class="row">
+    <plotly-plot [data]="gameData" [layout]="gameLayout" class="col-6"></plotly-plot>
+    <plotly-plot [data]="genreData" [layout]="genreLayout" class="col-6"></plotly-plot>
+
+</div>
+<div class="container">
+    <h2>Leaderboard</h2>
+    <div class="leaderboard">
+        <div class="sorters row align-items-center justify-content-center">
+            <div class="col-4">Username</div>
+            <div class="col-4 sort" (click)="leaderboard('win')">Wins</div>
+            <div class="col-4 sort" (click)="leaderboard('perfect')">Perfect Wins</div>
+        </div>
+        <div *ngFor="let user of sortedUsers; let i = index" class="user-display row align-items-center justify-content-center">
+            <div *ngIf="i <= 9"class="col-4">{{user.id}}</div>
+            <div *ngIf="i <= 9"class="col-4">{{returnScore(user)}}</div>
+            <div *ngIf="i <= 9"class="col-4">{{user.score.perfectWin}}</div>
+        </div>
+    </div>
+</div>

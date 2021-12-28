@@ -1,0 +1,32 @@
+@import url("https://fonts.googleapis.com/css?family=Teko&display=swap");
+
+h1 {
+    font-family: 'Teko';
+
+}
+
+.question-answer{
+    font-size: 1.25em;
+}
+
+.next {
+    margin-top: 15px;
+}
+
+.main-body{
+    width: 500px;
+    text-align: center;
+}
+
+.question-answer{
+    height: 100%;
+
+}
+
+.question-answer button{
+    bottom: 0;
+    text-align: center;
+    margin-right: 6%;
+}
+
+input[type="radio"]:checked+label{ font-weight: bold; } 

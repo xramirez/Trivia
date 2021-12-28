@@ -1,0 +1,51 @@
+<div class="main-body row justify-content-center align-items-center">
+    <button class="btn btn-secondary" (click)="viewStats()">Leaderboard and Statistics</button>
+    <div class="login row align-items-end justify-content-center">
+        <h1 [style.visibility]="selectedUser.name ? 'visible' : 'hidden'">Welcome, {{selectedUser.name}}</h1>
+        <div class="col">
+            <h3>Log In:</h3>
+            <input class="form-control" type="text" name="username" id="username" [(ngModel)]="loginID" placeholder="username">
+            <input class="form-control" type="password" name="password" id="password" [(ngModel)]="loginPass" placeholder="password">
+            <div [style.visibility]="badLogin ? 'visible' : 'hidden'" class="bad-login">{{loginText}}</div>
+            <input type="button" class="btn btn-primary" value="Log In" (click)="tryLogin();loginID='';loginPass=''">
+        </div>
+        <div class="col">
+            <h3>First Time? Sign Up Here:</h3>
+            <input class="form-control text" type="text" [(ngModel)]="signUp.id" placeholder="username">
+            <input class="form-control text" type="text" [(ngModel)]="signUp.name" placeholder="name (leave blank to go by your username)">
+            <input class="form-control text" type="text" [(ngModel)]="signUp.password" placeholder="password" required>
+            <div [style.visibility]="badSignup ? 'visible' : 'hidden'" class="bad-login">Username is taken. Try another one!</div>
+            <input type="button" value="Sign Up" class="btn btn-primary" (click)="generateUser(); signUp.id = ''; signUp.name = ''; signUp.password = ''">
+        </div>
+    </div>
+    <div class="settings row align-items-end justify-content-center">
+        <h3 id="setting-title">Pick Your Game Settings: (leave empty for a completely random trivia game!)</h3>
+        <div class="col">
+            <label for="Difficulty" class="form-label">Game Difficulty:</label>
+            <select name="difficulty" id="difficulty" [(ngModel)]="triviaInfo.difficulty" class="form-control">
+                <option value="easy">Easy</option>
+                <option value="medium">Medium</option>
+                <option value="hard">Hard</option>
+            </select>
+        </div>
+        <div class="col">
+            <label for="category" class="form-label">Trivia Category:</label>
+            <select name="category" id="category" [(ngModel)]="triviaInfo.category" class="form-control">
+                <option value="11">Film</option>
+                <option value="12">Music</option>
+                <option value="14">Television</option>
+                <option value="15">Video Games</option>
+            </select>
+        </div>
+        <div class="col">
+            <label for="choice" class="form-label">Multiple Choice or True/False:</label>
+            <select name="choice" id="choice" [(ngModel)]="triviaInfo.choiceType" class="form-control">
+                <option value="multiple">Multiple Choice</option>
+                <option value="boolean">True/False</option>
+            </select>
+        </div>
+    </div>
+    <div>
+        <button (click)="startGame()" class="btn btn-secondary" [innerHTML]="!isGuest ? 'Start Game' : 'Start as Guest'"></button>
+    </div>
+</div>
