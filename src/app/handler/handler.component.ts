@@ -62,6 +62,7 @@ export class HandlerComponent implements OnInit {
   }
 
   startGame(gameInfo: GameInfo) {
+    this.getUsers();
     if (gameInfo.guest === true) {
       this.isGuest = true
       this.activeUser = 'Guest'

@@ -56,7 +56,7 @@ export class HomeComponent implements OnInit {
     this.userService.getUsers()
       .then(data => {
         this.users = data
-        //console.log(this.users)
+        console.log(this.users)
       })
   }
 
@@ -86,7 +86,8 @@ export class HomeComponent implements OnInit {
       this.badSignup = true;
     else {
       await this.userService.generateUser(this.signUp.id, this.signUp.password, this.signUp.name === '' ? this.signUp.id : this.signUp.name)
-      this.getUsers();
+      await this.getUsers();
+      console.log(this.users)
     }
   }
 
