@@ -107,14 +107,4 @@ export class HomeComponent implements OnInit {
     let handleInfo = { isStats: true, guest: this.isGuest, id: this.isGuest ? 'Guest' : this.selectedUser.id, info: this.triviaInfo }
     this.gameOutput.emit(handleInfo)
   }
-
-  checkTrivia() {
-    this.triviaService.getTrivia(this.triviaInfo)
-      .then((resp: any) => {
-        if (resp.response_code === 1)
-          this.badTrivia = true;
-        else
-          this.badTrivia = false;
-      })
-  }
 }

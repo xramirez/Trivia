@@ -1,3 +1,5 @@
+import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing'
+
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { HandlerComponent } from './handler.component';
@@ -8,6 +10,7 @@ describe('HandlerComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
+      imports: [HttpClientTestingModule],
       declarations: [ HandlerComponent ]
     })
     .compileComponents();

@@ -14,9 +14,10 @@ export class TriviaService {
     return new Promise((resolve, reject) => {
       this.http.get(`https://opentdb.com/api.php?amount=10&category=${info.category}&difficulty=${info.difficulty}&type=${info.choiceType}`).subscribe(
         (res) => {
-          resolve(res);
+          console.log(res)
+          return resolve(res);
         }, (err) => {
-          reject(err);
+          return reject(err);
         }
       )
     })
